@@ -1,11 +1,11 @@
-title: Hacker-Blog
-description: "A Jekyll Blog Theme For Hackers"
+title: [Jacob P. Mohrbutter]
+description: "Security Blog"
 author:
   name: "Jacob Mohrbutter"
   email: "jmohrbutter@gmail.com"
   url: "qu3b411.github.io"
 
-baseurl: 1u3b411.github.io/
+baseurl: qu3b411.github.io/
 
 source: .
 destination: ./_site
