@@ -5,7 +5,7 @@ author:
   email: "jmohrbutter@gmail.com"
   url: "qu3b411.github.io"
 
-baseurl: /
+baseurl: 1u3b411.github.io/
 
 source: .
 destination: ./_site
