@@ -3,9 +3,9 @@ description: "Security Blog"
 author:
   name: "Jacob Mohrbutter"
   email: "jmohrbutter@gmail.com"
-  url: "qu3b411.github.io"
+  url: ""
 
-baseurl: /
+baseurl: qu3b411.github.io/
 
 source: .
 destination: ./_site
