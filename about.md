@@ -1,5 +1,4 @@
 ---
 title: About
 ---
-
-Something about me.
+Site still under construction!
