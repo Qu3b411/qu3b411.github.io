@@ -3,11 +3,11 @@ title: Passwords How big companies are doing it wrong
 published: false
 ---
 
-I'm going to make a bold claim, **Few companies, get their passwords right**. Often time's I observe the companies doing it wrong are the ones that should get it right. Financial, Creditors, Lenders, Any institution that deals with personal or sensitive information. These are all institutions that have no business getting authentication mechanisms wrong. Yet time and time again the institutions dealing with the most sensitive data are the ones making the most glaring mistakes. 
+I'm going to make a bold claim, **Few companies, get their passwords right**. Often time's the institutions that are creating the lowest security barriors are the ones that should be getting it right.  Any institution that deals with personal or sensitive information have no business getting authentication mechanisms wrong. Yet time and time again the institutions dealing with the most sensitive data are the ones making the most glaring mistakes. 
 
 # Max Password Lengths
 
-One of my biggest gripe with any system. Consider the last time you saw this line
+Consider the last time you saw this line
 ```
 Passwords must be between 8 and 16 characters long
 ```
