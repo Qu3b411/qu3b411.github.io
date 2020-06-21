@@ -43,6 +43,6 @@ Their are reasonable limits that can be set on the length of a password, but 16 
 | a-zA-Z0-9 | 22 : ~130 bits | 43 : ~256 bits | 65 : ~387 bits | 86 : ~512 bits |
 |  All ASCII printable characters | 20 : ~131 bits | 39 : 256 bits | 59 : ~387 bits | 78 : ~512 bits| 
 
-If a password based key derivation function produces a 256 bit key then setting a maximum of 43 alphanumeric characters makes perfect sense. less then 65 ensures the password is the weekest length, greater then 65 produces overhead in computational resources, this decision can be mathamatically justified. 
+If a password based key derivation function produces a 256 bit key then setting a maximum of 43 alphanumeric characters makes perfect sense. less then 65 ensures the password is the weekest length, greater then 43 characters would produce overhead in computational resources, this decision can be mathamatically justified. 
 
 people are using password managers we can generate passwords to any length and any complexity. 
