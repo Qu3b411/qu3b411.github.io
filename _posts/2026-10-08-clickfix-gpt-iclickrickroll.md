@@ -13,15 +13,15 @@ published: true
 <strong>The fix is the attack.</strong> In this lure, following the website's "verification" instructions is what would infect the computer. If a website tells you to press <kbd>Win</kbd>+<kbd>R</kbd>, then <kbd>Ctrl</kbd>+<kbd>V</kbd>, then <kbd>Enter</kbd> to "verify" anything — stop and close the tab. No legitimate service needs that sequence.
 </aside>
 
-**If you only read one section, read this one. Share it with someone who might follow a fake verification prompt.**
+**If you only read one section, read this one. Show it to anyone who might follow a fake verification prompt.**
 
-I had searched for "gpt". The browser record shows a Google ad redirect into a community GPT on the real ChatGPT site. Its notice claimed a service problem and sent me to a backup page. That page dressed itself as a human-verification check and told me to run a command on my own computer.
+I searched for "gpt". A Google ad redirect led to a Custom GPT on the real ChatGPT site, where a fake service notice pointed me to a "backup" page. That page pretended to verify I was human and told me to run a command on my own computer.
 
-The keyboard sequence is the warning:
+Those three keys are the warning:
 
-- **`Windows key + R`, `Ctrl + V`, `Enter` runs a command.** The first keys open Windows Run; the next keys paste whatever the page put on your clipboard; Enter executes it. A website asking you to do that is asking you to run its code.
-- **A human-verification check stays in the web page.** If a box claiming to be Cloudflare asks you to open Windows Run or PowerShell, close the tab.
-- **A familiar site can carry someone else's instructions.** The malicious notice appeared inside a community GPT on the real ChatGPT site. The surrounding page was genuine; the instructions were supplied by a third party.
+- **`Windows key + R`, `Ctrl + V`, `Enter` runs a command.** The first keys open Windows Run. The next keys paste what the page placed on the clipboard; Enter executes it.
+- **Cloudflare does not need Windows Run or PowerShell to check a browser session.** Close the tab if a page asks you to open either one.
+- **The address bar is not enough here.** The GPT was on `chatgpt.com`, but the message came from whoever built that Custom GPT.
 
 **What to do instead:**
 
@@ -29,7 +29,7 @@ The keyboard sequence is the warning:
 - If you are unsure, ask someone you trust before following the instructions.
 - If you already ran it, disconnect that computer from the internet and get help from someone who can examine it. This trick can install a hidden program.
 
-I did not run the command on my host. The payload here targets Windows; the warning sign is a website telling you to execute a command outside the browser.
+I did not run the command on my host. The payload targeted Windows. The warning sign was a website telling me to execute a command outside the browser.
 
 ---
 
@@ -39,17 +39,17 @@ I did not run the command on my host. The payload here targets Windows; the warn
 
 # Executive Summary
 
-I searched for `gpt` and landed in a community-built GPT called “Plus 5.6” after a Google ad redirect. The page was on the real ChatGPT site. Its fake service notice pointed to a Google Sites page dressed as a Cloudflare check. My browser record shows that page loading; it does not preserve the click that opened it. A later saved copy of the page put a PowerShell launcher on the clipboard and told the visitor to press `Win+R`, `Ctrl+V`, `Enter`. On Windows that sequence would run the launcher, fetch two more PowerShell stages, and silently install an MSI. The visitor had to run the command for the attack to proceed.
+My search for `gpt` crossed a Google ad redirect and landed on “Plus 5.6,” a Custom GPT on the real ChatGPT site. Its fake service notice led to a Google Sites page posing as a Cloudflare check. The browser record shows that page loading, but not the click that opened it. A later copy of the page placed a PowerShell launcher on the clipboard and instructed the visitor to press `Win+R`, `Ctrl+V`, `Enter`. On Windows, that sequence would run the launcher, fetch two more PowerShell stages, and silently install an MSI. The attack depended on the visitor running the command.
 
-I did not run it on my host. I collected the Windows payload afterward and examined it in isolation. The MSI hides its installed product, side-loads a DLL chain, and starts an implant with persistence and task-handling code. I reconstructed enough of its binary protocol to send a type-1 shell task to the resident implant. The first probe returned a marker and opened a local page. The prepared demo uses the same task path to open a locally served Rick Astley video. The released lab includes the primed infected VM, emulator, controller, and harness so another researcher can repeat that result without contacting the real C2.
+I collected the Windows payload afterward without running that command on my host. In the isolated lab, the MSI hid its installed product, side-loaded a DLL chain, and started an implant with persistence and task-handling code. I reconstructed enough of its binary protocol to send a type-1 shell task. The implant returned my marker and opened a local page. I used the same task path for the prepared demo, which opens a locally served Rick Astley video. The release contains the primed infected VM, emulator, controller, and harness used for that run.
 
-The saved samples came after the browser visit, so I cannot say they are byte-for-byte what that first visit would have received. The public package reproduces the isolated tasking result; raw browser, mailbox, and lab captures remain private. I reported the attack from the ChatGPT conversation under **Cyber attacks**. Firefox also saved the exact GPT conversation URL and fake-site URL when I submitted OpenAI’s report form. The reply to my first report said **“no policy violation.”** I had no unrelated reports from that account. OpenAI had the conversation report and the URLs, but I cannot see what a reviewer opened or how the reports were routed internally. After that reply, I reported the GPT itself as **Scams and/or fraud**; OpenAI acknowledged “Plus 5.6” by name. I found no decision for that later report. The GPT became unavailable afterward. I do not know why.
+The saved samples came after the browser visit, so I cannot assign their exact bytes to that first visit. The public package reproduces the isolated tasking result; the browser, mailbox, and raw lab captures remain private. I reported the conversation under **Cyber attacks** and sent the conversation and fake-site URLs through OpenAI's report form. The reply to my first report said **“no policy violation.”** OpenAI later acknowledged my report of the GPT itself under **Scams and/or fraud**, but I found no decision on that report. The GPT later became unavailable; I do not know why.
 
 ---
 
 # A ClickFix GPT, a weaponized MSI, and the implant that RickRolled itself
 
-*A real ChatGPT page carried a fake verification prompt. I followed the payload into an isolated lab and eventually made its implant play Rick Astley.*
+*A Custom GPT on the real ChatGPT site pointed me to a fake verification check. I followed the saved payload into an isolated lab and made its implant play Rick Astley.*
 
 **Research materials:** [qu3b411/clickfix repository](https://github.com/qu3b411/clickfix) · [prepared lab release](https://github.com/qu3b411/clickfix/releases/tag/iclickrickroll-lab-v1) · [demo-evidence guide](https://github.com/qu3b411/clickfix/blob/main/docs/demo-evidence.md) · [sample and lab safety](https://github.com/qu3b411/clickfix/blob/main/SAFETY.md).
 
@@ -59,38 +59,38 @@ The saved samples came after the browser visit, so I cannot say they are byte-fo
 
 ## DFIU
 
-*(Don't Fuck It Up. This is for the person excited enough to try the lab and tempted to take a shortcut.)*
+*(Don't Fuck It Up. The video is a joke; the VM runs a real implant.)*
 
-The archive linked below contains a live implant and a prepared infected Windows VM. If you only want to watch the result, the video is below. You do not need the lab to understand the joke.
+The archive contains an infected Windows VM and live malware on its disks. If you only want to see the result, watch the video below. There is no reason to unpack the lab for that.
 
 If you do run the lab, use a dedicated host you can afford to wipe and read the included warning first. The shipped harness checks its own VirtualBox setup, but you are responsible for the host around it.
 
 - **Keep the VMs on the isolated internal network.** No NAT, bridged, or host-only adapter. No route to your LAN or the internet. Check the adapter settings before booting and again if you change anything.
-- **Keep host integration off.** No shared folders, shared clipboard, drag-and-drop, or Guest Additions in the infected Windows VM. A convenient file transfer is a bad trade when the guest is running malware.
+- **Keep host integration off.** No shared folders, shared clipboard, drag-and-drop, or Guest Additions in the infected Windows VM. Do not give the malware a convenient path back to the host.
 - **Do not point the sample at the real C2.** The address in this article is a live indicator. Inside the lab it is redirected to a local controller, with forwarding disabled. Do not copy that address into a browser or run the sample on a normal network.
 - **Treat the downloads as hazardous.** The password is an acknowledgement, not a safety feature. Do not unpack the archive in Downloads and browse around casually. Keep the samples encrypted except inside the intended research environment.
-- **Stop when the setup disagrees with the instructions.** A failed isolation check is a stop sign. Do not comment it out to get to the Rickroll. Inspect what changed and start again from a clean disposable clone.
+- **Stop if an isolation check fails.** Do not comment it out to get to the Rickroll. Inspect the VM settings and start again from a clean disposable clone.
 - **Assume your guest is compromised after the demo.** Do not log into personal accounts in it. Do not give it secrets. Revert or delete disposable clones when you finish.
 
 ---
 
 ## Technical Teardown
 
-My browser record reaches the fake check. It cannot tell me what would have downloaded if I had followed the instructions on my host. I collected the later stages separately and ran those saved bytes in isolation. The lab result belongs to those samples, not to an unseen download during the original visit.
+My browser record reaches the fake check. I collected the later stages separately, so the runtime findings below come from those saved bytes inside the lab.
 
 ### The route to the fake check
 
-The preserved browser route starts with a search for `gpt`, crosses a Google `/aclk` ad redirect, and reaches a GPT called "Plus 5.6." The click identifier matches across the redirect. I also remember a strange "New chat" transition, but I cannot place it from the browser record.
+Firefox records the `gpt` search, a Google `/aclk` ad redirect, and the “Plus 5.6” GPT. The click identifier matches across the redirect. I remember a strange “New chat” transition, but the browser record does not place it.
 
 <figure>
   <img src="/assets/clickfix/google-sponsored-result-later.png"
        alt="A later Google search for gpt showing a sponsored ChatGPT result and a hovered google.com/aclk link">
   <figcaption>
-    While preparing this article, I made the same search and again saw a sponsored ChatGPT result with a Google <code>/aclk</code> link. This later screenshot shows how ordinary that entry point looks; it is not the incident ad and does not show that this result is malicious. I cropped out browser profile details and removed the ad URL's query parameters.
+    I repeated the search while preparing this article and saw another sponsored ChatGPT result with a Google <code>/aclk</code> link. This is a later screenshot, not the incident ad; it does not establish that the later result was malicious. I cropped out the browser profile and removed the ad URL's query parameters.
   </figcaption>
 </figure>
 
-The GPT identified itself as community-built. I started a conversation ("Extract avatar") and saw a "**Service Availability Notice**" claiming trouble with the primary service and pointing to a backup site, `sites[.]google[.]com/view/antibot172881`. The screenshot records that notice, and the browser record shows the site loaded afterward. It does not retain the initiating click. The fake notice came from third-party GPT content inside a genuine ChatGPT page; I have no evidence that OpenAI authored it.
+The GPT displayed the label “By community builder.” I started a conversation with “Extract avatar” and received a **Service Availability Notice** claiming trouble with the primary service. It offered `sites[.]google[.]com/view/antibot172881` as a backup. The screenshot records the notice; the browser record shows the site loading afterward, though it does not preserve the click. The notice was third-party GPT content inside a genuine ChatGPT page. I have no evidence that OpenAI authored it.
 
 ### Fake Cloudflare verification
 
@@ -100,15 +100,14 @@ My screenshot shows the Google Sites page rendering a full-screen **Cloudflare-s
   <img src="/assets/clickfix/fake-cloudflare-verification.png"
        alt="Fake Cloudflare 'Human Verification' modal instructing the user to press Win+R, Ctrl+V, Enter">
   <figcaption>
-    The fake Cloudflare "Human Verification" modal served from
-    <code>sites[.]google[.]com/view/antibot172881</code>. This is attacker-controlled content on
-    Google Sites, not a real Cloudflare check. This crop has its metadata stripped;
-    the public hash and handling notes are in
+    The fake verification prompt at
+    <code>sites[.]google[.]com/view/antibot172881</code>. It was hosted on Google Sites and
+    imitated Cloudflare. I stripped the crop's metadata; its hash and handling notes are in
     <a href="https://github.com/qu3b411/clickfix/tree/main/images/incident">images/incident</a>.
   </figcaption>
 </figure>
 
-The checkbox is theater. The saved page places a PowerShell launcher in an offscreen textarea, selects it, and calls `document.execCommand('copy')`. By the time the visitor reaches `Ctrl+V`, the command is already on the clipboard. The page also swaps visible `google.com` text for `chatgpt.com`, blocks developer-tool shortcuts, and posts telemetry to a runtime-origin `api.php`. It references an external script and a panel address that were not captured, so this copy cannot establish whether either one ran.
+The checkbox is theater. The saved page puts a PowerShell launcher in an offscreen textarea, selects it, and calls `document.execCommand('copy')`. By the time the visitor presses `Ctrl+V`, the command is on the clipboard. The page also swaps visible `google.com` text for `chatgpt.com`, blocks developer-tool shortcuts, and posts telemetry to a runtime-origin `api.php`. It references an external script and a panel address I did not capture, so I cannot say whether either ran.
 
 ### Payload retrieval
 
@@ -118,35 +117,36 @@ The clipboard launcher fetched `/12` from `1450003207`, wrote a PowerShell scrip
 2. `GET /s/19481b28bd67` → `stage3.txt` (54,235 bytes, arithmetic-obfuscated) — decodes to a downloader of `/app/19481b28bd67/IconEdit2Turb.msi`, saved to `%TEMP%`, `Unblock-File`, then `msiexec /i … /qn /norestart` with a hidden window.
 3. `GET /app/19481b28bd67/IconEdit2Turb.msi` → the weaponized MSI (5,069,824 bytes).
 
-The first stage and MSI are saved bytes; I decoded the middle stage. These samples were collected after the original browser visit.
+I saved all three responses after the browser visit and decoded the obfuscated middle response for analysis.
 
 > **Artifacts:** the page, both PowerShell stages, and the MSI are published as live samples — in password-protected archives only — under [`malware/`](https://github.com/qu3b411/clickfix/tree/main/malware). Original and archive hashes are in [`malware/README.md`](https://github.com/qu3b411/clickfix/blob/main/malware/README.md); repository file hashes are in [`manifests/SHA256SUMS.txt`](https://github.com/qu3b411/clickfix/blob/main/manifests/SHA256SUMS.txt). **Read [`SAFETY.md`](https://github.com/qu3b411/clickfix/blob/main/SAFETY.md) first.**
 
 ### Inside the MSI
 
 <details markdown="1">
-<summary><strong>Expand: MSI packaging, hidden-product flag, and the side-load chain</strong></summary>
+<summary><strong>MSI tables and side-load chain</strong></summary>
 
-The MSI declares benign branding ("Stardock Smart DeElevation Tool", v7.12.0, "Filezo", Advanced Installer), installs in the user's LocalAppData `Programs` tree, and sets `ARPSYSTEMCOMPONENT=1` to hide from the installed-programs list. A WiX `WixShellExec` custom action (sequence 6602, after `InstallFinalize`) **launches `DeElevate64.exe`** without another user action. The dependency chain is `DeElevate64.exe` → `DeElevator64.dll!RunNonElevated` → `I++u.dll!contentsStroke` → `senddmp.resources.dll` (+ dynamically loaded `res.dll`). `DeElevator64.dll` has its import directory in `.rsrc` and a certificate directory pointing past EOF, both signs of a modified loader.
+The MSI calls itself “Stardock Smart DeElevation Tool” (v7.12.0, “Filezo,” Advanced Installer). It installs under the user's LocalAppData `Programs` directory and sets `ARPSYSTEMCOMPONENT=1`, which hides the product from the installed-programs list. A WiX `WixShellExec` custom action (sequence 6602, after `InstallFinalize`) launches `DeElevate64.exe` without another user action.
+
+The dependency chain is `DeElevate64.exe` → `DeElevator64.dll!RunNonElevated` → `I++u.dll!contentsStroke` → `senddmp.resources.dll`, with `res.dll` loaded dynamically. `DeElevator64.dll` has its import directory in `.rsrc` and a certificate directory pointing past EOF. Those changes identify it as a modified loader, despite the product branding.
 
 </details>
 
 ### The Build.dat graft
 
-`Build.dat` presents as a 36-entry NuGet-style ZIP but has a **deliberately inserted region** at `[0x5847b, 0xaba8e)` — exactly 341,523 bytes. Removing precisely that range from an analysis copy restores a ZIP whose 36 members all pass CRC. The `I++u.dll` loader reads exactly that region, transforms it, copies it into executable memory allocated by `senddmp.resources.dll`, and hands the buffer to `EnumSystemCodePagesW` as a callback — a code-execution loader, not data.
+`Build.dat` presents as a 36-entry NuGet-style ZIP. A 341,523-byte region has been inserted at `[0x5847b, 0xaba8e)`; removing exactly that range from an analysis copy restores a ZIP whose 36 members all pass CRC. `I++u.dll` reads the inserted bytes, transforms them, copies the result into executable memory allocated by `senddmp.resources.dll`, and passes the buffer to `EnumSystemCodePagesW` as a callback. That callback executes the decoded code.
 
-The transformed region decodes to valid x64 position-independent code once all three changing state registers in the loader's XOR loop are tracked correctly. My first pass got that loop wrong; the corrected decoder and recovered bytes are retained in my analysis record.
+My first decoder got the XOR loop wrong because I had not tracked all three changing state registers. Once I did, the inserted region decoded to valid x64 position-independent code. I kept the corrected decoder and recovered bytes in my analysis record.
 
 ### An isolated execution
 
 Static analysis showed a loader and task-handling code. I needed to see whether the installed process stayed alive long enough to use either. I built a disposable Windows 11 VM with one NIC on a private VirtualBox internal network and no host integration. Sysmon, Procmon, ETW collection for DNS, Task Scheduler, and WinHTTP, plus process, socket, and memory-dump watchers from a read-only tools ISO recorded the run. I took a clean powered-off snapshot before introducing the sample and checked isolation again afterward.
 
-The released victim comes from the sealed run. Defender real-time protection was on, but its signatures were old and offline, and the specimen's install folder had a narrow exclusion. The specimen survived under those conditions. That says nothing about current Defender detection on a fully updated Windows machine.
-
+The released victim comes from that sealed run. Defender real-time protection was on with old offline signatures and a narrow exclusion for the specimen's install folder. It did not quarantine the specimen in this run.
 
 ### Network emulation
 
-The Windows guest needed to reach the services the sample expected without gaining a route off the lab network. A second VM (Ubuntu 24.04) ran INetSim and dnsmasq on the same private segment: wildcard DNS to `10.77.86.2`, simulated HTTP/HTTPS, DHCP, **no default route, IP forwarding 0**. I used a clean probe VM to check that service path before attaching the infected guest. Later, a small local replay server returned the three exact saved stage bodies, allowing the ClickFix chain to run end-to-end without an uplink.
+I gave the Windows guest the services the sample expected without giving it an external route. An Ubuntu 24.04 VM ran INetSim and dnsmasq on the same private segment: wildcard DNS to `10.77.86.2`, simulated HTTP/HTTPS, DHCP, **no default route, IP forwarding 0**. I checked the service path with a clean probe VM before attaching the infected guest. Later, a local replay server returned the three exact saved stage bodies so the ClickFix chain could run inside the lab.
 
 ### Finding the C2 path
 
@@ -155,15 +155,15 @@ Once the implant stayed resident, I watched it query `dns.google`, attempt TLS w
 ### Reconstructing the protocol
 
 <details markdown="1">
-<summary><strong>Expand: the recovered wire format (header, descriptors, registration profile)</strong></summary>
+<summary><strong>Wire format and registration profile</strong></summary>
 
-The messages use a **120-byte arithmetic header** (constant `K=0x16df3822a8`), **88-byte field descriptors**, and XOR-transformed field data. A client-embedded UTC timestamp preceded the socket watcher's first observation of the same source port in every stream, a useful cross-check on the decode. The body is a 26-field registration profile: username `analyst`, computer `CFX-LAB`, Windows version, security product, CPU/GPU, locale, client version, executable, and install path. I also mapped the receive-side action tags (`0x56bc`, `0x56be`, `0x5b90`, `0x5608`, …) and reproduced the frame-length arithmetic against the captured frames. The [public protocol specification](https://github.com/qu3b411/clickfix/blob/main/c2/protocol-spec.md) carries the wire details.
+The messages have a **120-byte arithmetic header** (constant `K=0x16df3822a8`), **88-byte field descriptors**, and XOR-transformed field data. The UTC timestamp decoded from the client frame preceded the socket watcher's first observation of the same source port in every stream, checking the decode against an independent clock. The body contains 26 registration fields: username `analyst`, computer `CFX-LAB`, Windows version, security product, CPU/GPU, locale, client version, executable, and install path. I mapped receive-side action tags (`0x56bc`, `0x56be`, `0x5b90`, `0x5608`, …) and checked the frame-length arithmetic against the captures. The [protocol specification](https://github.com/qu3b411/clickfix/blob/main/c2/protocol-spec.md) has the wire details.
 
 </details>
 
 ### Why the implant stayed alive
 
-The first direct-MSI run persisted; several shorter runs did not. The difference turned out to be a "Syntax error" dialog left open by the de-elevation wrapper. The dialog kept `DeElevate64.exe` alive while the malicious DLL ran on another thread. The decoded task script waits **150** and **875 seconds** before writing the Run value and scheduled task. In a controlled run I left the dialog open and saw both writes. For this sample, in these runs, process lifetime was the condition that mattered.
+The first direct-MSI run persisted; several shorter runs did not. I traced the difference to a “Syntax error” dialog left open by the de-elevation wrapper. The dialog kept `DeElevate64.exe` alive while the malicious DLL ran on another thread. The decoded task script waits **150 seconds** and **875 seconds** before writing the Run value and scheduled task. When I left the dialog open in a controlled run, both writes appeared. Process lifetime explained the difference in these runs.
 
 ### Process tree and Sysmon
 
@@ -177,26 +177,20 @@ The receive-side reconstruction identified a type-1 task container, a start-shel
 
 I tested the reconstructed frames against the resident implant:
 
-- **State flip:** changing decoded field `0x56bc` between `01` and `00` repeatably changed the live client's connection lifetime and reconnect cadence. Switching it back restored the first behavior. Both NIC captures contain the generated frames; the change came from the client acting on them.
-- **Type-1 shell:** the implant spawned `cmd.exe`, returned `CFX_RICKROLL_TASK_PROOF`, and echoed the shell PID in reply field `0x5975`. A second fixed shell-input frame launched Edge at a local page. That first probe did not play the video; the later prepared demo served video through the same local address.
+- **State flip:** I changed decoded field `0x56bc` from `01` to `00` and back. The live client's connection lifetime and reconnect cadence changed with it, then returned to the first behavior. Both NIC captures contain my generated frames.
+- **Type-1 shell:** I sent a fixed task that made the implant spawn `cmd.exe`. It returned `CFX_RICKROLL_TASK_PROOF` and echoed the shell PID in reply field `0x5975`. My next shell-input frame opened Edge at a local page. This first probe did not play the video; the prepared demo used the same task path to serve it later.
 
 Sysmon recorded `DeElevate64.exe → cmd.exe → msedge.exe` during my controlled probe. My controller sent the command that opened Edge; I did not observe attacker tasking. I checked the implant’s replies against captures from both NICs and the Sysmon process tree. The [demo-evidence guide](https://github.com/qu3b411/clickfix/blob/main/docs/demo-evidence.md) separates this probe from the later video presentation.
 
 ### What happened after I reported it
 
-I used two reporting paths before the negative reply arrived.
+I reported the “Plus 5.6” conversation in ChatGPT under **Cyber attacks**. The receipt names that category and says it concerned a ChatGPT conversation, but does not print the conversation ID. I had no unrelated reports from that account.
 
-First, I reported the attack from the **ChatGPT conversation** under **Cyber attacks**. OpenAI's receipt says the report concerned "Cyber attacks" in a ChatGPT conversation. It does not print the conversation ID, but I made the report about the "Plus 5.6" conversation, and I had no unrelated reports from that account. This was the first report.
+I also submitted OpenAI's **Report Content form**. Firefox saved the exact GPT conversation URL and fake-site URL together when I submitted it. The case-system email acknowledges receipt but does not repeat either URL. Both submissions preceded the negative reply; I cannot tell whether OpenAI joined them internally.
 
-I also used OpenAI's **Report Content form**. Firefox saved the fake-site URL and the exact "Plus 5.6" conversation URL together when that form was submitted. A case-system acknowledgment then said a report had been submitted. That email does not repeat the URLs. The form and its acknowledgment came before the negative review reply, but I cannot see whether OpenAI joined the form case to the conversation report internally.
+The same reporting mail system that acknowledged the conversation report then said it had reviewed the content and **“found no policy violation.”** The reply lacks a case ID, conversation ID, and GPT name, and I cannot see what the reviewer opened. The conversation I reported led Windows users to a fake verification page instructing them to run a command; the form carried both URLs. That was enough to inspect the GPT, its outbound link, and whether other users had reached it. The negative answer may reflect intake, routing, or review; the message does not say which. I do not know whether a separate investigation followed.
 
-Then the same reporting mail system that acknowledged the **Cyber attacks** conversation report sent a reply saying it had reviewed the content I reported in ChatGPT and **"found no policy violation."** With no unrelated reports from that account, this was the answer to my first attack-conversation report. The reply does not print a case ID, conversation ID, or GPT name, and I cannot see what the reviewer actually opened. I read it later that morning.
-
-The first report concerned a GPT conversation that led to a fake verification page telling Windows users to execute a command. I also submitted the exact conversation and fake-site URLs through the report form. The later collected chain installed a resident implant that accepted shell tasks in my isolated lab. Someone reviewing the reported conversation needed to inspect the GPT and its outbound link and assess whether other users were exposed. I cannot tell whether the miss was in intake, routing, or review, or whether a separate investigation occurred. I can see the answer sent to my first report: **"no policy violation."**
-
-After reading that answer, I reported the **GPT itself** as **Scams and/or fraud**. The later acknowledgment explicitly names "Plus 5.6" and confirms receipt. It does not say OpenAI reviewed or removed the GPT, and I found no decision email for that GPT-level report in the preserved mailbox.
-
-I found some report messages only when I revisited the mailbox. Their headers show they were delivered on the incident date; delivery does not tell me when I first saw them. When I checked later, the GPT was unavailable. I do not know whether OpenAI removed it, its creator took it down, or something else happened.
+After reading that answer, I reported the **GPT itself** under **Scams and/or fraud**. The acknowledgment names “Plus 5.6”; I found no decision on that report. Some of the report emails surfaced only when I revisited the mailbox. Their headers show delivery on the incident date, not when I read them. The GPT later became unavailable. I cannot establish why.
 
 ---
 
@@ -210,32 +204,28 @@ I found some report messages only when I revisited the mailbox. Their headers sh
           allowfullscreen></iframe>
   <p><a href="https://www.youtube.com/watch?v=VRApu5B4TR8">Watch the recorded demo on YouTube</a></p>
   <figcaption>
-    Two live VMs, side by side. The resident implant accepts the local controller's task,
-    starts a shell, and opens Edge on the locally served concert video with sound.
-    The controller pane shows the task and the implant's replies. The guest and emulator
-    use one isolated internal network, with the sample's C2 address redirected to the
-    local controller and no external route. Packet captures and the process tree
-    record the same task path.
+    The infected Windows VM is on the left; my local controller is on the right. After
+    the implant checks in, I send a shell task and Edge opens the locally served video
+    with sound. The victim and emulator use one VirtualBox internal network. The sample's
+    C2 address is redirected inside that network; neither VM has an external route.
     Served media: <a href="https://commons.wikimedia.org/wiki/File:Rick_Astley_-_Never_Gonna_Give_You_Up_-_Festival_de_Vi%C3%B1a_del_Mar_2016_HD.webm">"Never Gonna Give You Up (Festival de Viña del Mar 2016)"</a>
     by FESTIVALDEVINACHILE, via Wikimedia Commons,
     <a href="https://creativecommons.org/licenses/by/3.0/">CC&nbsp;BY&nbsp;3.0</a>.
-    The source file is unmodified; this recording shows it playing inside the lab.
+    The source file is unmodified.
   </figcaption>
 </figure>
 
-The search ad, community GPT, and copy-paste “verification” trick reached my browser. I saved the page without running its command, then followed the later payload inside the lab. Static analysis exposed the loader and task-handling code. The running implant sent registration messages to my listener. I reconstructed the frame arithmetic and enough of the receive path to send a response it would act on.
+The video uses the shell path I tested with the earlier local-page probe. In that probe, both NIC captures contain my task frames and the implant's replies; Sysmon records `DeElevate64.exe → cmd.exe → msedge.exe` after my controller sent the command. The [protocol specification](https://github.com/qu3b411/clickfix/blob/main/c2/protocol-spec.md) gives the frame format, and the [demo-evidence guide](https://github.com/qu3b411/clickfix/blob/main/docs/demo-evidence.md) identifies which records belong to the probe and which to the video.
 
-The first fixed task returned `CFX_RICKROLL_TASK_PROOF`, echoed the shell PID, and opened a page on the local emulator. The video came later through the same shell path. The tasking result is recorded in more than the browser window:
-
-- **Protocol frames:** the public [protocol specification](https://github.com/qu3b411/clickfix/blob/main/c2/protocol-spec.md) documents the reconstructed format and the fixed controller frames.
-- **Packet captures and Sysmon:** the controlled probe's captures reconstruct both sides of the exchange. Sysmon records `DeElevate64.exe → cmd.exe → msedge.exe` after my controller sent the task; the shell PID appears in the implant's reply. The [demo-evidence guide](https://github.com/qu3b411/clickfix/blob/main/docs/demo-evidence.md) separates that probe from the later video presentation.
-- **Prepared baselines:** the [release manifest](https://github.com/qu3b411/clickfix/blob/main/iclickrickroll/ARCHIVE-SHA256SUMS) hashes each archive part and the assembled ZIP. The encrypted package contains internal file checksums and the saved VMs used for the repeatable demo.
-
-The implant accepted my frame, started the shell, and acted on its input while every network path stayed inside the lab. The packaged baselines preserve the resident state so another researcher can repeat the check.
+The [release manifest](https://github.com/qu3b411/clickfix/blob/main/iclickrickroll/ARCHIVE-SHA256SUMS) hashes each archive part and the assembled ZIP. The package contains the saved VM state from which another researcher can repeat the demo.
 
 ### How do I make iClickRickroll?
 
-**[Get the prepared lab](https://github.com/qu3b411/clickfix/releases/tag/iclickrickroll-lab-v1)** from the `qu3b411/clickfix` release. It contains a **live infected Windows VM** with its saved RAM state, an isolated emulator, the controller, two ISOs, and the harness. Preserving that state is why this is a VM-folder release rather than an OVA or instructions to infect a fresh guest. The encrypted archive is 21.3 GiB, expands to about 118.6 GB before disposable run clones, and is split into twelve assets for GitHub's per-file limit. Read the [warning](https://github.com/qu3b411/clickfix/blob/main/iclickrickroll/MALWARE-WARNING.txt) and inspect the [guided setup script](https://github.com/qu3b411/clickfix/blob/main/iclickrickroll/setup-lab.sh) before running it. Do not pipe a fetched script straight into a shell.
+**[Get the prepared lab](https://github.com/qu3b411/clickfix/releases/tag/iclickrickroll-lab-v1)** from the `qu3b411/clickfix` release. The archive holds the **live infected Windows VM** with its saved RAM state, the emulator, controller, two ISOs, and harness. The VM folders preserve the resident implant's state; an OVA would discard that saved RAM.
+
+The encrypted ZIP is 21.3 GiB and expands to about 118.6 GB before the harness makes disposable run clones. GitHub's per-file limit required twelve parts.
+
+Read the [warning](https://github.com/qu3b411/clickfix/blob/main/iclickrickroll/MALWARE-WARNING.txt) and inspect the [guided setup script](https://github.com/qu3b411/clickfix/blob/main/iclickrickroll/setup-lab.sh) before running it. Do not pipe a fetched script into a shell.
 
 ```sh
 git clone https://github.com/qu3b411/clickfix.git
@@ -243,14 +233,16 @@ cd clickfix
 bash iclickrickroll/setup-lab.sh
 ```
 
-The terminal guide asks before downloading the twelve parts, verifies each SHA-256 and the joined ZIP, and asks again before extraction and import. You type `IAcknowledgeMaliciousContent` once; it is both the acknowledgement and the ZIP password, passed to `unzip` without placing it in process arguments. After verifying the extracted files, the guide offers the Debian/Ubuntu packages listed in `packages.json` and imports both baselines into `iclickrickroll-research/` beside the clone. On the dedicated Linux/VirtualBox host, run the command it prints:
+The terminal guide asks before downloading the twelve parts, verifies each SHA-256 and the joined ZIP, then asks again before extraction and import. You type `IAcknowledgeMaliciousContent` once; it is both the acknowledgement and the ZIP password. The script passes it to `unzip` without putting it in process arguments. It verifies the extracted files, offers the Debian/Ubuntu packages listed in `packages.json`, and imports both baselines into `iclickrickroll-research/` beside the clone. On the dedicated Linux/VirtualBox host, run the command it prints:
 
 ```sh
 cd ../iclickrickroll-research/iclickrickroll-lab/reproducible-lab
 make iclickrickroll
 ```
 
-The harness checks the shipped **single VirtualBox internal network**, the absence of NAT/bridged/host-only adapters, and emulator forwarding disabled. It starts disposable clones of the baselines and brings up the local controller. Type `send-rick` in the C2 pane. The command waits for the resident implant's next beacon; that delay is normal. On receipt, the fixed task opens Edge fullscreen on the **locally served** Creative Commons concert video. The emulator redirects the sample's hardcoded C2 address to the controller **inside the lab**. It has no route to the real endpoint. `make clean` removes the run clones. The [full lab instructions](https://github.com/qu3b411/clickfix/blob/main/iclickrickroll/README.md) cover manual acquisition, prerequisites, hashes, and handling limits.
+The harness checks that the VMs have **one VirtualBox internal network**, no NAT, bridged, or host-only adapter, and no emulator forwarding. It starts disposable clones of both baselines and opens the local controller. The emulator redirects the sample's hardcoded C2 address to my controller inside the lab, with no route to the real endpoint.
+
+Type `send-rick` in the controller pane. The implant may take a while to beacon; the command waits for it. When it checks in, the task opens Edge fullscreen on the **locally served** Creative Commons concert video. `make clean` removes the run clones. The [full lab instructions](https://github.com/qu3b411/clickfix/blob/main/iclickrickroll/README.md) cover prerequisites, hashes, manual acquisition, and handling.
 
 ---
 
