@@ -167,7 +167,7 @@ The first direct-MSI run persisted; several shorter runs did not. The difference
 
 ### Process tree and Sysmon
 
-Sysmon joined the installer chain `msiexec.exe → msiexec.exe → 32-bit msiexec.exe → DeElevate64.exe`, the DLL load order, the delayed HKCU Run value and scheduled task, and the tasking chain `DeElevate64.exe → cmd.exe → msedge.exe`. The guest and emulator clocks differed after saved-state resume; I joined network events to the emulator capture by source port and packet order.
+Sysmon joined the installer chain `msiexec.exe → msiexec.exe → 32-bit msiexec.exe → DeElevate64.exe` to the DLL load order and the delayed HKCU Run value and scheduled task. The guest and emulator clocks differed after saved-state resume; I joined network events to the emulator capture by source port and packet order.
 
 ### A local controller
 
@@ -180,7 +180,7 @@ The reconstructed frames let me test whether the client was actually parsing my 
 - **State flip:** changing decoded field `0x56bc` between `01` and `00` repeatably changed the live client's connection lifetime and reconnect cadence. Switching it back restored the first behavior. Both NIC captures contain the generated frames; the change came from the client acting on them.
 - **Type-1 shell:** the implant spawned `cmd.exe`, returned `CFX_RICKROLL_TASK_PROOF`, and echoed the shell PID in reply field `0x5975`. A second fixed shell-input frame launched Edge at a local page. That first probe did not play the video; the later prepared demo served video through the same local address.
 
-I checked the replies against captures from both NICs and the Sysmon process tree. The public [demo-evidence guide](https://github.com/qu3b411/clickfix/blob/main/docs/demo-evidence.md) keeps the original task probe distinct from the later video presentation.
+Sysmon recorded `DeElevate64.exe → cmd.exe → msedge.exe` during that controlled probe, after my controller sent the task. Edge was the result of my shell input, not an observed attacker command. I checked the replies against captures from both NICs and the Sysmon process tree. The public [demo-evidence guide](https://github.com/qu3b411/clickfix/blob/main/docs/demo-evidence.md) keeps the controlled probe distinct from the later video presentation.
 
 ### What happened after I reported it
 
