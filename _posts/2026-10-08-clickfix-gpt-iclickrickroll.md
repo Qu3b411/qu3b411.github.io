@@ -33,7 +33,7 @@ The command was not run on the research host. The payload targeted Windows. The 
 
 ---
 
-**Publication note:** [Huntress published analysis](https://www.huntress.com/blog/chatgpt-custom-gpts-clickfix-rat) of the same “Plus 5.6” campaign and Stardock/Build.dat loader chain before this article. That work has publication priority on the overlapping findings. This investigation was conducted independently and was substantially complete before the Huntress report was found. The protocol reconstruction, controlled tasking, and reproducible lab described here were developed from separately captured artifacts and testing.
+**Publication note:** Huntress published analysis of the same “Plus 5.6” campaign and Stardock/Build.dat loader chain before this article. That work has publication priority on the overlapping findings. This investigation was conducted independently and was substantially complete before the Huntress report was found. The protocol reconstruction, controlled tasking, and reproducible lab described here were developed from separately captured artifacts and testing.
 
 ---
 
