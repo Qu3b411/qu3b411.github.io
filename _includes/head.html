@@ -11,7 +11,7 @@
   {% else %}
   {% seo %}
   {% endif %}
-  <link rel="stylesheet" href="{{ '/css/main.css' | relative_url }}">
-  {% if page.layout == 'clickfix' %}<link rel="stylesheet" href="{{ '/css/clickfix.css' | relative_url }}">{% endif %}
+  <link rel="stylesheet" href="{{ '/css/main.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+  {% if page.layout == 'clickfix' %}<link rel="stylesheet" href="{{ '/css/clickfix.css' | relative_url }}?v={{ site.time | date: '%s' }}">{% endif %}
   <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }} RSS" href="{{ '/atom.xml' | relative_url }}">
 </head>
