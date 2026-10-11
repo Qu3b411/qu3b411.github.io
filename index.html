@@ -1,13 +1,23 @@
 ---
 layout: default
+title: "Security research and malware analysis"
+description: "Independent security research, malware analysis, incident records, and reproducible lab notes by qu3b411."
 ---
-
-<ul>
-    {% for post in paginator.posts %}
-      <li>
-          <h2><a href="{{ post.url | prepend: site.baseurl | replace: '//', '/' }}">{{ post.title }}</a></h2>
-          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date_to_string }}</time>
-          <p>{{ post.content | strip_html | truncatewords:50 }}</p>
-      </li>
-    {% endfor %}
-</ul>
+<section class="home-intro" aria-labelledby="home-title">
+  <p class="eyebrow">qu3b411 / research log</p>
+  <h1 id="home-title">Security research, written from the evidence.</h1>
+  <p>Malware analysis, incident records, and reproducible lab notes.</p>
+</section>
+<section class="post-list" aria-labelledby="latest-heading">
+  <div class="section-heading">
+    <h2 id="latest-heading">Published work</h2>
+    <a href="{{ '/archive/' | relative_url }}">Full archive →</a>
+  </div>
+  {% for post in paginator.posts %}
+  <article class="post-card">
+    <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%d %b %Y' }}</time>
+    <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+    <p>{{ post.description | default: post.excerpt | strip_html | truncatewords: 48 }}</p>
+  </article>
+  {% endfor %}
+</section>

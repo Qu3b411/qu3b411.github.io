@@ -1,34 +1,31 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="light">
-  {% seo %}
-  <link rel="stylesheet" href="/css/clickfix.css">
-</head>
-<body>
-  <div class="layout">
-    <aside class="sidebar" aria-label="Article navigation">
-      <a class="brand" href="/">qu3b411<span> / ClickFix research</span></a>
-      <div class="sidebar-label">In this article</div>
-      <nav aria-label="Sections">
-        <a href="#public-advisory">Public Advisory</a>
-        <a href="#executive-summary">Executive Summary</a>
-        <a href="#dfiu">DFIU</a>
-        <a href="#technical-teardown">Technical Teardown</a>
-        <a href="#rickroll">RickRoll</a>
-        <a class="nested" href="#how-do-i-make-iclickrickroll">How do I make iClickRickroll?</a>
-        <a href="#to-the-malware-author">To the Malware Author</a>
-      </nav>
-      <div class="sidebar-footer">Prepared lab · recorded demo · reproducible research</div>
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'en' }}">
+{% include head.html %}
+<body class="site-page site-page--clickfix">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  {% include header.html %}
+  <main id="main-content" class="article-layout">
+    <aside class="article-sidebar" aria-label="Article navigation">
+      <div class="article-sidebar__inner">
+        <p class="sidebar-label">In this article</p>
+        <nav aria-label="Sections">
+          <a href="#public-advisory">Public Advisory</a>
+          <a href="#executive-summary">Executive Summary</a>
+          <a href="#dfiu">DFIU</a>
+          <a href="#incident-record">Incident record</a>
+          <a href="#technical-teardown">Technical Teardown</a>
+          <a href="#rickroll">RickRoll</a>
+          <a class="nested" href="#how-to-make-iclickrickroll">How to make iClickRickroll</a>
+          <a href="#the-reversal">The reversal</a>
+        </nav>
+        <p class="sidebar-note">Prepared lab · recorded demo · reproducible research</p>
+        <time datetime="{{ page.date | date_to_xmlschema }}" class="sidebar-date">{{ page.date | date: '%d %b %Y' }}</time>
+      </div>
     </aside>
-    <main class="article-wrap">
-      <article class="article-body">
-        {{ content }}
-      </article>
-      <footer class="page-footer"><a href="/">Back to qu3b411.github.io</a></footer>
-    </main>
-  </div>
+    <article class="prose clickfix-content">
+      {{ content }}
+    </article>
+  </main>
+  {% include footer.html %}
 </body>
 </html>

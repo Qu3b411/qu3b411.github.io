@@ -1,2 +1,3 @@
 User-agent: *
 Disallow: /contact.html
+Sitemap: https://blog.jacobmohrbutter.com/sitemap.xml

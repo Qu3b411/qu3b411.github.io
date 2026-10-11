@@ -1,7 +1,8 @@
 ---
 layout: clickfix
 title: "A ClickFix GPT, a weaponized MSI, and the implant that RickRolled itself"
-description: "A ClickFix lure inside a community GPT, the recovered payload, and an isolated lab replay."
+seo_title: "ClickFix GPT, MSI loader and C2 research"
+description: "A malicious Custom GPT reached through a Google ad led to a ClickFix lure. Analysis of the later recovered MSI, C2 protocol reconstruction, and an isolated Rickroll lab replay."
 date: 2026-10-08
 permalink: /clickfix/
 published: true

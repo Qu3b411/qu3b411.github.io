@@ -1,9 +1,6 @@
-<footer>
-  <a href="https://creativecommons.org/licenses/by-nc/3.0/deed.en_US">
-    <span>
-        <b>{{ site.owner}}</b>
-    </span>
-    {% capture currentyear %}{{ 'now' | date: "%Y" }}{% endcapture %}
-    <span>© {{ currentyear }}</span>
-  </a>
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <span>qu3b411 · {{ site.title }}</span>
+    <span>© {{ 'now' | date: '%Y' }} · <a href="https://creativecommons.org/licenses/by-nc/3.0/deed.en_US">License</a></span>
+  </div>
 </footer>
