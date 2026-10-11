@@ -1,11 +1,17 @@
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-  <meta name="generator" content="Jekyll">
-
-  <title>{%if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
-
-  <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl | replace: '//', '/' }}">
-  
-  <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="ATOM Feed" /> {% seo %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#10151b">
+  <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | relative_url }}">
+  {% if page.sitemap == false %}<meta name="robots" content="noindex">{% endif %}
+  {% if page.seo_title %}
+  <title>{{ page.seo_title | escape }} | {{ site.title | escape }}</title>
+  {% seo title=false %}
+  {% else %}
+  {% seo %}
+  {% endif %}
+  <link rel="stylesheet" href="{{ '/css/main.css' | relative_url }}">
+  {% if page.layout == 'clickfix' %}<link rel="stylesheet" href="{{ '/css/clickfix.css' | relative_url }}">{% endif %}
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }} RSS" href="{{ '/atom.xml' | relative_url }}">
 </head>

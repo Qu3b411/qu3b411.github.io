@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Archive
+description: "Published security research and technical writeups from qu3b411."
 ---
 
 <section>

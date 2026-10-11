@@ -1,5 +1,5 @@
 title: "Jacob P. Mohrbutter"
-description: "Security Blog"
+description: "Security research, malware analysis, and CTF writeups by qu3b411."
 
 author:
   name: "Jacob Mohrbutter"
@@ -22,8 +22,18 @@ defaults:
       type: "posts"
     values:
       layout: "post"
+  - scope:
+      path: "googlec624f5ada2892cbb.html"
+    values:
+      sitemap: false
 
 future: true
+lang: en
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - docs
 
 plugins:
   - jekyll-seo-tag
