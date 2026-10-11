@@ -106,30 +106,12 @@ a:focus-visible, summary:focus-visible {
   letter-spacing: .14em;
   text-transform: uppercase;
 }
-.home-intro { max-width: 70ch; padding: 1rem 0 2.8rem; }
-.home-intro h1 {
-  max-width: 18ch;
-  margin: 0 0 1rem;
-  color: #f4f7fa;
-  font: 750 clamp(2.2rem, 5vw, 3.6rem)/1.12 system-ui, sans-serif;
-  letter-spacing: -.045em;
-}
-.home-intro > p:last-child { margin: 0; color: var(--soft); font-size: 1.12rem; }
-.section-heading {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  padding-bottom: .8rem;
-  border-bottom: 1px solid var(--line);
-}
-.section-heading h2 { margin: 0; font-size: 1.2rem; }
-.section-heading a { white-space: nowrap; font-size: .82rem; }
+.post-list__heading { margin: 0; padding-bottom: .8rem; border-bottom: 1px solid var(--line); font-size: 1.2rem; }
 .post-card { padding: 1.65rem 0 1.7rem; border-bottom: 1px solid var(--line); }
 .post-card time, .post-date { color: var(--muted); font: 600 .78rem/1.5 ui-monospace, SFMono-Regular, Consolas, monospace; }
-.post-card h3 { margin: .45rem 0 .5rem; font-size: clamp(1.3rem, 2.4vw, 1.65rem); line-height: 1.3; letter-spacing: -.025em; }
-.post-card h3 a { color: var(--text); text-decoration: none; }
-.post-card h3 a:hover { color: var(--link); text-decoration: underline; }
+.post-card h2 { margin: .45rem 0 .5rem; font-size: clamp(1.3rem, 2.4vw, 1.65rem); line-height: 1.3; letter-spacing: -.025em; }
+.post-card h2 a { color: var(--text); text-decoration: none; }
+.post-card h2 a:hover { color: var(--link); text-decoration: underline; }
 .post-card p { max-width: 68ch; margin: 0; color: var(--soft); }
 .pagination { display: flex; justify-content: space-between; gap: 1rem; padding-top: 2rem; color: var(--muted); font-size: .85rem; }
 
@@ -223,7 +205,6 @@ a:focus-visible, summary:focus-visible {
   .site-footer__inner { width: calc(100% - 2rem); flex-direction: column; gap: .3rem; }
   .prose { font-size: 1rem; }
   .prose pre { font-size: .76rem; }
-  .home-intro { padding-bottom: 2rem; }
 }
 
 /* Shared article shell and section index for all published posts. */
