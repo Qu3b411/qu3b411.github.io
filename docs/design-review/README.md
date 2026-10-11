@@ -8,4 +8,4 @@ The `before` images were captured from the public site before this branch was ed
 | ClickFix case study | [before](clickfix-before.png) | [after](clickfix-after.png) | [after](clickfix-mobile-after.png) |
 | KernelCon 2019 writeup | [before](kernelcon-before.png) | [after](kernelcon-after.png) | [after](kernelcon-mobile-after.png) |
 
-The case study's section index and warning card remain its own components. Its palette, header, type scale, links, code, tables, and footer now use the shared site system.
+Both articles now use the same section sidebar and reading card. The case study keeps its own warning card and curated section links. Its palette, header, type scale, links, code, tables, and footer use the shared site system.

@@ -6,6 +6,16 @@ description: "A malicious Custom GPT reached through a Google ad led to a ClickF
 date: 2026-10-08
 permalink: /clickfix/
 published: true
+sidebar_note: "Prepared lab · recorded demo · reproducible research"
+article_nav:
+  - { id: public-advisory, label: "Public Advisory" }
+  - { id: executive-summary, label: "Executive Summary" }
+  - { id: dfiu, label: "DFIU" }
+  - { id: incident-record, label: "Incident record" }
+  - { id: technical-teardown, label: "Technical Teardown" }
+  - { id: rickroll, label: "RickRoll" }
+  - { id: how-to-make-iclickrickroll, label: "How to make iClickRickroll", nested: true }
+  - { id: the-reversal, label: "The reversal" }
 ---
 
 # Public Advisory

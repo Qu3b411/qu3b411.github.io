@@ -1,31 +1,4 @@
-<!DOCTYPE html>
-<html lang="{{ site.lang | default: 'en' }}">
-{% include head.html %}
-<body class="site-page site-page--clickfix">
-  <a class="skip-link" href="#main-content">Skip to content</a>
-  {% include header.html %}
-  <main id="main-content" class="article-layout">
-    <aside class="article-sidebar" aria-label="Article navigation">
-      <div class="article-sidebar__inner">
-        <p class="sidebar-label">In this article</p>
-        <nav aria-label="Sections">
-          <a href="#public-advisory">Public Advisory</a>
-          <a href="#executive-summary">Executive Summary</a>
-          <a href="#dfiu">DFIU</a>
-          <a href="#incident-record">Incident record</a>
-          <a href="#technical-teardown">Technical Teardown</a>
-          <a href="#rickroll">RickRoll</a>
-          <a class="nested" href="#how-to-make-iclickrickroll">How to make iClickRickroll</a>
-          <a href="#the-reversal">The reversal</a>
-        </nav>
-        <p class="sidebar-note">Prepared lab · recorded demo · reproducible research</p>
-        <time datetime="{{ page.date | date_to_xmlschema }}" class="sidebar-date">{{ page.date | date: '%d %b %Y' }}</time>
-      </div>
-    </aside>
-    <article class="prose clickfix-content">
-      {{ content }}
-    </article>
-  </main>
-  {% include footer.html %}
-</body>
-</html>
+---
+layout: default
+---
+{{ content }}

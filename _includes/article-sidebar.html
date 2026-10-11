@@ -1,0 +1,16 @@
+<aside class="article-sidebar" aria-label="Article navigation">
+  <div class="article-sidebar__inner">
+    <p class="sidebar-label">In this article</p>
+    <nav aria-label="Sections"{% unless page.article_nav %} data-auto-toc{% endunless %}>
+      {% if page.article_nav %}
+        {% for section in page.article_nav %}
+          <a{% if section.nested %} class="nested"{% endif %} href="#{{ section.id }}">{{ section.label }}</a>
+        {% endfor %}
+      {% else %}
+        <a href="#article-start">Start</a>
+      {% endif %}
+    </nav>
+    {% if page.sidebar_note %}<p class="sidebar-note">{{ page.sidebar_note }}</p>{% endif %}
+    <time datetime="{{ page.date | date_to_xmlschema }}" class="sidebar-date">{{ page.date | date: '%d %b %Y' }}</time>
+  </div>
+</aside>

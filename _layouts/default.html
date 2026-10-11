@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: 'en' }}">
 {% include head.html %}
-<body class="site-page">
+<body class="site-page{% if page.layout == 'clickfix' %} site-page--clickfix{% endif %}">
   <a class="skip-link" href="#main-content">Skip to content</a>
   {% include header.html %}
+  {% if page.layout == 'post' or page.layout == 'clickfix' %}
+  <main id="main-content" class="article-layout">
+    {% include article-sidebar.html %}
+    <article id="article-start" class="prose article-content{% if page.layout == 'clickfix' %} clickfix-content{% else %} post-content{% endif %}">
+      {{ content }}
+    </article>
+  </main>
+  {% else %}
   <main id="main-content" class="site-main">
     <div class="content-container">
       {{ content }}
@@ -20,7 +28,9 @@
       {% endif %}
     </div>
   </main>
+  {% endif %}
   {% include footer.html %}
   {% if site.google_analytics %}{% include analytics.html %}{% endif %}
+  {% if page.layout == 'post' and page.article_nav == nil %}<script defer src="{{ '/assets/js/article-toc.js' | relative_url }}"></script>{% endif %}
 </body>
 </html>
